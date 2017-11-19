@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		kotlinVersion = '1.1.2'
+		springBootVersion = '2.0.0.M1'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+group = 'org.doula'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+jar {
+	baseName = 'sample-spring-reactive'
+	version = '0.0.3-SNAPSHOT'
+}
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+	compile 'io.jmnarloch:rxjava-spring-boot-starter:2.0.0'
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-webflux')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('io.projectreactor:reactor-test')
+}
