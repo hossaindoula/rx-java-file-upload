@@ -1,5 +1,6 @@
 package org.doula.service;
 
+import org.doula.core.LogExecutionTime;
 import org.doula.model.Message;
 import org.doula.model.MessageAcknowledgement;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ public class ReactorService {
     private static final Logger logger = LoggerFactory.getLogger(ReactorService.class);
 
 
+    @LogExecutionTime
     public Mono<MessageAcknowledgement> handleMessageMono(Message message) {
         return Mono
                 .delay(Duration.ofMillis(message.getDelayBy()))
@@ -30,6 +32,7 @@ public class ReactorService {
                 });
     }
 
+    @LogExecutionTime
     public Flux<MessageAcknowledgement> handleMessageFlux(Message message) {
         return Flux.just(message)
                 .delaySubscription(Duration.ofMillis(message.getDelayBy()))

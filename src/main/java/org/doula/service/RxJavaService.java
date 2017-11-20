@@ -2,6 +2,7 @@ package org.doula.service;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
+import org.doula.core.LogExecutionTime;
 import org.doula.model.Message;
 import org.doula.model.MessageAcknowledgement;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class RxJavaService {
     private static final Logger logger = LoggerFactory.getLogger(RxJavaService.class);
 
+    @LogExecutionTime
     public Single<MessageAcknowledgement> handleMessageSingle(Message message) {
         logger.info("About to Acknowledge");
         return Single.just(message)
@@ -26,6 +28,7 @@ public class RxJavaService {
                 });
     }
 
+    @LogExecutionTime
     public Observable<MessageAcknowledgement> handleMessageObservable(Message message) {
         logger.info("About to Acknowledge");
         return Observable.just(message)

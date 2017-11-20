@@ -1,5 +1,6 @@
 package org.doula.service;
 
+import org.doula.core.LogExecutionTime;
 import org.doula.model.Message;
 import org.doula.model.MessageAcknowledgement;
 import org.doula.utils.Util;
@@ -17,6 +18,7 @@ public class CompletableFutureService {
 
     private final ExecutorService futureExecutor = Executors.newFixedThreadPool(10);
 
+    @LogExecutionTime
     public CompletableFuture<MessageAcknowledgement> handleMessage(Message message) {
         return CompletableFuture.supplyAsync(() -> {
             logger.info("Start: Executing slow task in CompletableFutureService");
