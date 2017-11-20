@@ -1,12 +1,13 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.2'
-		springBootVersion = '2.0.0.M1'
+		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
 	}
 	repositories {
 		mavenCentral()
+		jcenter()
 		maven { url "https://repo.spring.io/snapshot" }
 		maven { url "https://repo.spring.io/milestone" }
+		maven { url 'https://repo.spring.io/libs-snapshot' }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -29,6 +30,7 @@ jar {
 
 repositories {
 	mavenCentral()
+	jcenter()
 	maven { url "https://repo.spring.io/snapshot" }
 	maven { url "https://repo.spring.io/milestone" }
 }
@@ -41,4 +43,5 @@ dependencies {
 	compile 'com.jayway.awaitility:awaitility:1.7.0'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('io.projectreactor:reactor-test')
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '2.0.0.M1'
 }
